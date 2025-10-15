@@ -10,9 +10,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError("Поле электронной почты должно быть задано")
         email = self.normalize_email(email)
 
-        user = self.model(
-            phone_number=phone_number, email=email, **extra_fields
-        )
+        user = self.model(phone_number=phone_number, email=email, **extra_fields)
         user.set_password(password)
         user.save()
         return user

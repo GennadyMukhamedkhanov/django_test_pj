@@ -9,12 +9,10 @@ from api.services.students.get import GetStudentService
 
 
 class StudentView(APIView):
-
     def get(self, request, **kwargs):
         student = GetStudentService.execute(
             {
-                'id': kwargs.get('id'),
-
+                "id": kwargs.get("id"),
             }
         )
         serializer = StudentSerializer(student).data

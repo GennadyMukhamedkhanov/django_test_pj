@@ -17,8 +17,6 @@ class GetStudentService(Service):
     @property
     def _get_student(self):
         all_stud = Student.objects.all().count()
-        students = Student.objects.annotate(
-            count_students=Value(all_stud, output_field=models.IntegerField())
-        )
+        students = Student.objects.annotate(count_students=Value(all_stud, output_field=models.IntegerField()))
 
         return students

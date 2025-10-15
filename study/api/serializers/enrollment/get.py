@@ -7,22 +7,21 @@ class StudentEnrollmentSerializer(serializers.ModelSerializer):
         model = Student
 
         fields = (
-            'id',
-            'name',
-            'phone_number',
-            'age',
-            'graduation_date',
-            'created_at',
-            'updated_at',
-
+            "id",
+            "name",
+            "phone_number",
+            "age",
+            "graduation_date",
+            "created_at",
+            "updated_at",
         )
 
 
 class CourseEnrollmentSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Course
-        fields = '__all__'
+        fields = "__all__"
+
 
 class EnrollmentSerializer(serializers.ModelSerializer):
     student = StudentEnrollmentSerializer()
@@ -32,11 +31,9 @@ class EnrollmentSerializer(serializers.ModelSerializer):
         model = Enrollment
 
         fields = (
-            'id',
-            'student',
-            'course',
-            'grade',
-            'enroll_date',
-
+            "id",
+            "student",
+            "course",
+            "grade",
+            "enroll_date",
         )
-

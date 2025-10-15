@@ -5,10 +5,9 @@ from django.urls import include, path
 from conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls')),
-    path('api/', include('api.urls')),
-
+    path("admin/", admin.site.urls),
+    path("api-auth/", include("rest_framework.urls")),
+    path("api/", include("api.urls")),
 ]
 
 

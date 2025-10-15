@@ -4,7 +4,5 @@ from service_objects.services import Service
 
 
 class GetEnrollmentService(Service):
-
     def process(self):
-        obj = get_list_or_404(Enrollment)
-        return obj
+        return get_list_or_404(Enrollment)
