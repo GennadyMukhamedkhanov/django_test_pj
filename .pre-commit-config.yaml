@@ -1,0 +1,8 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.13.3  # актуальная версия Ruff
+    hooks:
+      - id: ruff
+        args: ["--fix"]
+        # exclude обычно указывать не нужно, если настроен в pyproject.toml
+      - id: ruff-format
