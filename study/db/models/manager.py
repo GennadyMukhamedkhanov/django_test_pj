@@ -3,7 +3,9 @@ from django.utils.translation import gettext_lazy as _
 
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, phone_number, email, password=None, **extra_fields):
+    def create_user(self, phone_number, email, password, **extra_fields):
+        if not password:
+            raise ValueError("Поле с паролем должно быть задано")
         if not phone_number:
             raise ValueError("Поле с номером телефона должно быть задано")
         if not email:

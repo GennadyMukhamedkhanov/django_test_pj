@@ -4,19 +4,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('db', '0005_alter_student_usermame'),
+        ("db", "0005_alter_student_usermame"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='student',
-            name='usermame',
+            model_name="student",
+            name="usermame",
         ),
         migrations.AlterField(
-            model_name='student',
-            name='username',
-            field=models.CharField(default='us', max_length=100),
+            model_name="student",
+            name="username",
+            field=models.CharField(default="us", max_length=100),
         ),
     ]

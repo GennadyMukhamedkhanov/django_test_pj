@@ -24,14 +24,13 @@ class Student(AbstractUser):
     graduation_date = models.DateField(null=True, blank=True, verbose_name="Дата окончания учебы")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания записи")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата последнего обнавления")
-    username = models.CharField(max_length=100, unique=False, default="us")
+    email = models.EmailField("email address", unique=True)
 
-    USERNAME_FIELD = "phone_number"
-    REQUIRED_FIELDS = ["username", "email"]
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username", "password"]
     objects = CustomUserManager()
 
     class Meta:
-        db_table = "Student"
         verbose_name = "Студент"
         verbose_name_plural = "Студенты"
         db_table = "student"

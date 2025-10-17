@@ -7,53 +7,87 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('db', '0001_initial'),
+        ("db", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Course',
+            name="Course",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=100, verbose_name='Название курса')),
-                ('teacher_name', models.CharField(max_length=100, verbose_name='Имя преподавателя')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Дата создания записи')),
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("title", models.CharField(max_length=100, verbose_name="Название курса")),
+                ("teacher_name", models.CharField(max_length=100, verbose_name="Имя преподавателя")),
+                ("created_at", models.DateTimeField(auto_now_add=True, verbose_name="Дата создания записи")),
             ],
             options={
-                'verbose_name': 'Кукс',
-                'verbose_name_plural': 'Курсы',
-                'db_table': 'Course',
+                "verbose_name": "Кукс",
+                "verbose_name_plural": "Курсы",
+                "db_table": "Course",
             },
         ),
         migrations.CreateModel(
-            name='Enrollment',
+            name="Enrollment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('grade', models.IntegerField(blank=True, null=True, validators=[django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(100)], verbose_name='Категория')),
-                ('enroll_date', models.DateField(verbose_name='Дата зачисления')),
-                ('course', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='enrollments', to='db.course', verbose_name='Курс')),
-                ('student', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='enrollments', to=settings.AUTH_USER_MODEL, verbose_name='Студент')),
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                (
+                    "grade",
+                    models.IntegerField(
+                        blank=True,
+                        null=True,
+                        validators=[
+                            django.core.validators.MinValueValidator(0),
+                            django.core.validators.MaxValueValidator(100),
+                        ],
+                        verbose_name="Категория",
+                    ),
+                ),
+                ("enroll_date", models.DateField(verbose_name="Дата зачисления")),
+                (
+                    "course",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="enrollments",
+                        to="db.course",
+                        verbose_name="Курс",
+                    ),
+                ),
+                (
+                    "student",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="enrollments",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Студент",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Зачисление',
-                'verbose_name_plural': 'Зачисление',
-                'db_table': 'Enrollment',
+                "verbose_name": "Зачисление",
+                "verbose_name_plural": "Зачисление",
+                "db_table": "Enrollment",
             },
         ),
         migrations.CreateModel(
-            name='WorkTime',
+            name="WorkTime",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date', models.DateField(verbose_name='Дата')),
-                ('hours_worked', models.DecimalField(decimal_places=2, max_digits=4, verbose_name='Отработанные часы')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='work_times', to=settings.AUTH_USER_MODEL, verbose_name='Студент')),
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("date", models.DateField(verbose_name="Дата")),
+                ("hours_worked", models.DecimalField(decimal_places=2, max_digits=4, verbose_name="Отработанные часы")),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="work_times",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Студент",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Рабочее время',
-                'verbose_name_plural': 'Рабочее время',
-                'db_table': 'WorkTime',
+                "verbose_name": "Рабочее время",
+                "verbose_name_plural": "Рабочее время",
+                "db_table": "WorkTime",
             },
         ),
     ]
