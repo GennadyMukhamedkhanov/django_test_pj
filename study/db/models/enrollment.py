@@ -14,7 +14,6 @@ class Enrollment(models.Model):
     enroll_date = models.DateField(verbose_name="Дата зачисления")
 
     class Meta:
-        db_table = "Enrollment"
         verbose_name = "Зачисление"
         verbose_name_plural = "Зачисление"
         db_table = "enrollment"

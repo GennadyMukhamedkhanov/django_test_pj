@@ -45,6 +45,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "study.utils.middleware.SimpleMiddleware",
 ]
 
 ROOT_URLCONF = "conf.urls"
@@ -123,7 +124,7 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
     # Время жизни токена доступа (в данном случае 5 минут)
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
     # Время жизни токена обновления (в данном случае 1 день)
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     # Указывает, нужно ли обновлять токены обновления при каждом запросе
