@@ -3,10 +3,10 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from utils.logging_config import logger
 
 from api.serializers.student.get import StudentSerializer
 from api.services.students.get import GetStudentService
-from study.utils.logging_config import logger
 
 
 class StudentView(APIView):

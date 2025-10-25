@@ -1,4 +1,4 @@
-from study.utils.logging_config import logger
+from utils.logging_config import logger
 
 
 class SimpleMiddleware:

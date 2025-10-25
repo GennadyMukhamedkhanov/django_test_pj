@@ -3,6 +3,7 @@ from datetime import timedelta
 from pathlib import Path
 
 import environ
+from kombu import Exchange, Queue
 
 env = environ.Env()
 
@@ -196,4 +197,21 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
     # Сериализатор для обновления скользящих токенов (по умолчанию TokenRefreshSlidingSerializer)
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
+}
+
+
+CELERY_BROKER_URL = "pyamqp://rmuser:rmpassword@195.66.114.26:5672//"
+CELERY_RESULT_BACKEND = "rpc://"
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TASK_ACKS_LATE = True
+CELERY_TASK_REJECT_ON_WORKER_LOSS = True
+
+CELERY_TASK_QUEUES = (
+    Queue("queue1", Exchange("my_exchange", type="direct"), routing_key="backup_queue", durable=True),
+)
+
+CELERY_TASK_ROUTES = {
+    "api.tasks.my_task": {"queue": "queue1"},
 }

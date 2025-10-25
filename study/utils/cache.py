@@ -2,7 +2,7 @@ import json
 
 import redis
 
-from study.utils.logging_config import logger
+from utils.logging_config import logger
 
 # Подключение к Redis
 cache = redis.Redis(host="localhost", port=6379, db=0)

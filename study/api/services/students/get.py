@@ -2,8 +2,7 @@ from db.models import Student
 from django import forms
 from django.shortcuts import get_object_or_404
 from service_objects.services import Service
-
-from study.utils.logging_config import logger
+from utils.logging_config import logger
 
 
 class GetStudentService(Service):
