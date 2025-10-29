@@ -1,8 +1,10 @@
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from utils.cache import CacheGet, CacheSet
 from utils.logging_config import logger
+from utils.swagger_schema_docs import ENROLLMENTS_GET_VIEW
 
 from api.serializers.enrollment.get import EnrollmentSerializer
 from api.services.enrollments.get import GetEnrollmentService
@@ -10,6 +12,7 @@ from api.tasks import my_task
 
 
 class EnrollmentGetView(APIView):
+    @swagger_auto_schema(**ENROLLMENTS_GET_VIEW)
     def get(self, request, **kwargs):
         my_task.delay()
         logger.info(

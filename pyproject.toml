@@ -12,6 +12,7 @@ dependencies = [
     "django-service-objects>=0.7.1",
     "djangorestframework>=3.16.1",
     "djangorestframework-simplejwt>=5.5.1",
+    "drf-yasg>=1.21.11",
     "loguru>=0.7.3",
     "pre-commit>=4.3.0",
     "psycopg2-binary>=2.9.10",

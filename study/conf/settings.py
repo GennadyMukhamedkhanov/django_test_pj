@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "service_objects",
     "rest_framework_simplejwt",
+    "drf_yasg",
 ]
 
 MIDDLEWARE = [
@@ -129,7 +130,6 @@ CACHES = {
     }
 }
 
-
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework_simplejwt.authentication.JWTAuthentication",),
 }
@@ -198,7 +198,6 @@ SIMPLE_JWT = {
     # Сериализатор для обновления скользящих токенов (по умолчанию TokenRefreshSlidingSerializer)
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
-
 
 CELERY_BROKER_URL = "pyamqp://rmuser:rmpassword@195.66.114.26:5672//"
 CELERY_RESULT_BACKEND = "rpc://"

@@ -1,9 +1,11 @@
+from drf_yasg.utils import swagger_auto_schema
 from permissions.is_author import IsAuthor
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from utils.logging_config import logger
+from utils.swagger_schema_docs import USER_GET_VIEW
 
 from api.serializers.student.get import StudentSerializer
 from api.services.students.get import GetStudentService
@@ -12,6 +14,7 @@ from api.services.students.get import GetStudentService
 class StudentView(APIView):
     permission_classes = [IsAuthenticated, IsAuthor]
 
+    @swagger_auto_schema(**USER_GET_VIEW)
     def get(self, request, **kwargs):
         logger.info(
             f"Получен запрос на получение студента id: {kwargs.get('id')} пользователем: "
