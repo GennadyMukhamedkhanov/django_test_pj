@@ -36,3 +36,13 @@ class EnrollmentGetView(APIView):
         logger.info("Даннае записаны в кеш успешно ")
 
         return Response(serializer, status=status.HTTP_200_OK)
+
+
+class Hello(APIView):
+    def get(self, request):
+        return Response({"Hi": "Hello"}, status=status.HTTP_200_OK)
+
+
+class By(APIView):
+    def get(self, request):
+        return Response({"By": "by"}, status=status.HTTP_200_OK)
