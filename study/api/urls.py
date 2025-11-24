@@ -5,6 +5,7 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
 )
 
+from api.views.course import CourseCreate, CourseGetAllCreate
 from api.views.enrollments import By, EnrollmentGetView, Hello
 from api.views.student import StudentCreateView
 from api.views.students import StudentView
@@ -18,4 +19,6 @@ urlpatterns = [
     path("enrollment/", EnrollmentGetView.as_view(), name="enrollments"),
     path("hello/", Hello.as_view(), name="hello"),
     path("by/", By.as_view(), name="by"),
+    path("course/", CourseCreate.as_view(), name="course"),
+    path("course_get_all/", CourseGetAllCreate.as_view(), name="course_get+all"),
 ]

@@ -5,6 +5,7 @@ class Course(models.Model):
     title = models.CharField(max_length=100, verbose_name="Название курса")
     teacher_name = models.CharField(max_length=100, verbose_name="Имя преподавателя")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания записи")
+    photo = models.ImageField(upload_to="course/", null=True, blank=True)
 
     class Meta:
         db_table = "Course"

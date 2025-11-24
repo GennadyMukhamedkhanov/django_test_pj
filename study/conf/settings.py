@@ -108,10 +108,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = env("STATIC_URL", cast=str, default="/static/")
-STATIC_ROOT = env("STATIC_ROOT", cast=str, default=os.path.join(BASE_DIR, "static/"))
+STATIC_ROOT = env("STATIC_ROOT", cast=str, default=os.path.join(BASE_DIR, "/var/static/"))
 
 MEDIA_URL = env("MEDIA_URL", cast=str, default="/uploads/")
-MEDIA_ROOT = env("MEDIA_ROOT", cast=str, default=os.path.join(BASE_DIR, "uploads/"))
+MEDIA_ROOT = env("MEDIA_ROOT", cast=str, default=os.path.join(BASE_DIR, "/var/uploads"))
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -130,8 +130,12 @@ CACHES = {
     }
 }
 
+
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework_simplejwt.authentication.JWTAuthentication",),
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
 }
 
 SIMPLE_JWT = {
