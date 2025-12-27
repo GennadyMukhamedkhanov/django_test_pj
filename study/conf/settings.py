@@ -25,6 +25,8 @@ ALLOWED_HOSTS = env("ALLOWED_HOSTS", cast=lambda v: [s.strip() for s in v.split(
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
+    "channels",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -47,7 +49,9 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "study.utils.middleware.SimpleMiddleware",
+    # "study.utils.middleware.SimpleMiddleware",
+    "utils.middleware.SimpleMiddleware",
+    # Todo убрать при использовании docker compose, также в .env поменять localhost на db
 ]
 
 ROOT_URLCONF = "conf.urls"
@@ -69,6 +73,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "conf.wsgi.application"
+
+ASGI_APPLICATION = "conf.asgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -123,11 +129,21 @@ AUTH_USER_MODEL = "db.Student"
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
+        "LOCATION": "redis://redis:6379/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         },
     }
+}
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
 }
 
 
@@ -218,3 +234,7 @@ CELERY_TASK_QUEUES = (
 CELERY_TASK_ROUTES = {
     "api.tasks.my_task": {"queue": "queue1"},
 }
+
+
+if __name__ == "__main__":
+    pass

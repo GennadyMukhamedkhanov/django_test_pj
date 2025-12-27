@@ -6,9 +6,4 @@ class CourseGetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
 
-        fields = (
-            "id",
-            "title",
-            "teacher_name",
-            "photo",
-        )
+        fields = ("id", "title", "teacher_name", "photo", "video")

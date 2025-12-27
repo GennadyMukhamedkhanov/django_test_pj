@@ -11,7 +11,7 @@ COPY pyproject.toml uv.lock* ./
 
 
 # Устанавливаем зависимости через uv
-RUN uv sync --no-dev
+RUN uv sync
 
 #ENV PYTHONPATH=/django_test_pj/study
 ENV PYTHONPATH=/django_test_pj

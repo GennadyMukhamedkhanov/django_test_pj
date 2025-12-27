@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🧪 WebSocket Чат</title>
+    <style>
+        body { font-family: Arial; max-width: 600px; margin: 50px auto; }
+        #messages { height: 400px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; margin: 10px 0; background: #f9f9f9; }
+        input { padding: 10px; font-size: 16px; width: 400px; }
+        button { padding: 10px 20px; font-size: 16px; background: #007bff; color: white; border: none; cursor: pointer; }
+        .message { margin: 5px 0; padding: 8px; background: white; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 WebSocket Чат (комната: chatroom)</h1>
+    <div id="status">⏳ Подключение...</div>
+    <div id="messages"></div>
+    <input type="text" id="messageInput" placeholder="Напиши сообщение...">
+    <button onclick="sendMessage()">📤 Отправить</button>
+
+    <script>
+        const ws = new WebSocket("ws://127.0.0.1:8000/ws/chat/chatroom/");
+        const messages = document.getElementById('messages');
+        const status = document.getElementById('status');
+        const input = document.getElementById('messageInput');
+
+        function addMessage(username, text) {
+            const div = document.createElement('div');
+            div.className = 'message';
+            div.innerHTML = `<strong>${username}:</strong> ${text}`;
+            messages.appendChild(div);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        ws.onopen = () => {
+            status.textContent = '✅ Подключен к чату!';
+            status.style.color = 'green';
+            addMessage('Система', 'Ты подключился к чату!');
+        };
+
+        ws.onmessage = (e) => {
+            const data = JSON.parse(e.data);
+            addMessage(data.username, data.message);
+        };
+
+        ws.onerror = () => status.textContent = '❌ Ошибка';
+        ws.onclose = () => status.textContent = '🔌 Отключен';
+
+        function sendMessage() {
+            const message = input.value.trim();
+            if (message && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({message}));
+                input.value = '';
+            }
+        }
+
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+
+
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>TEST WS</h1>
+    <button onclick="testWS()">TEST WebSocket</button>
+    <div id="log"></div>
+    <script>
+        function testWS() {
+            const ws = new WebSocket("ws://127.0.0.1:8000/ws/test/");
+            const log = document.getElementById('log');
+
+            ws.onopen = () => log.innerHTML += '<p style="color:green">✅ CONNECTED</p>';
+            ws.onmessage = (e) => log.innerHTML += `<p>📨 ${e.data}</p>`;
+            ws.onerror = (e) => log.innerHTML += '<p style="color:red">❌ ERROR</p>';
+            ws.onclose = () => log.innerHTML += '<p>🔌 CLOSED</p>';
+
+            setTimeout(() => ws.send('HELLO'), 1000);
+        }
+    </script>
+</body>
+</html>

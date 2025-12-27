@@ -1,10 +1,9 @@
+from api.serializers.course.get import CourseGetSerializer
 from db.models import Course
 from rest_framework import status
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
-from api.serializers.course.get import CourseGetSerializer
 
 
 class CourseSerializer:
@@ -21,6 +20,7 @@ class CourseCreate(APIView):
             title=request.data.get("title"),
             teacher_name=request.data.get("teacher_name"),
             photo=request.data.get("photo"),
+            video=request.data.get("video"),
         )
 
         course.save()
@@ -40,3 +40,14 @@ class CourseGetAllCreate(APIView):
         serializer = CourseGetSerializer(course, many=True).data
 
         return Response(serializer, status=status.HTTP_201_CREATED)
+
+
+class CourseDelAllCreate(APIView):
+    permission_classes = [
+        AllowAny,
+    ]
+
+    def delete(self, request, **kwargs):
+        Course.objects.all().delete()
+
+        return Response(status=status.HTTP_200_OK)

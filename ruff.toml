@@ -4,6 +4,7 @@ exclude = [
     "__pycache__",
     "*.yml.enc",
     "study/db/migrations/*",
+    "study/conf/asgi*",
 
 ]  # Исключение файлов и директорий
 

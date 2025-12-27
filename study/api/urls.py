@@ -1,14 +1,13 @@
+from api.views.course import CourseCreate, CourseDelAllCreate, CourseGetAllCreate
+from api.views.enrollments import By, EnrollmentGetView, Hello
+from api.views.student import StudentCreateView
+from api.views.students import StudentView
 from django.urls import path
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
     TokenVerifyView,
 )
-
-from api.views.course import CourseCreate, CourseGetAllCreate
-from api.views.enrollments import By, EnrollmentGetView, Hello
-from api.views.student import StudentCreateView
-from api.views.students import StudentView
 
 urlpatterns = [
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),  # Получение токена
@@ -21,4 +20,5 @@ urlpatterns = [
     path("by/", By.as_view(), name="by"),
     path("course/", CourseCreate.as_view(), name="course"),
     path("course_get_all/", CourseGetAllCreate.as_view(), name="course_get+all"),
+    path("course_del/", CourseDelAllCreate.as_view(), name="course_del_all"),
 ]
