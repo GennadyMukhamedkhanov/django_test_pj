@@ -1,0 +1,15 @@
+name: protection workflow test
+
+on:
+  pull_request:
+    branches: [dev]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Simple test passed ✅
+        run: echo "All checks passed!"
